@@ -23,6 +23,22 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Multiple Read
+router.get('/getMany', async(req, res) => {
+  try {
+    let body = req.body;
+    const teacher = await Teacher.find({ _id: body._id });
+
+    if (teacher.length > 0) {
+      res.status(200).json(teacher)
+    } else {
+      res.send('No matching records found');
+    }
+  } catch (error) {
+    res.status(500).json({message: error.message})
+  }
+})
+
 // Update a teacher
 router.put('/:id', async (req, res) => {
   try {
@@ -33,16 +49,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Delete a teacher
-// router.delete('/:id', async (req, res) => {
-//   try {
-//     const teacher = await Teacher.findByIdAndRemove(req.params.id);
-//     res.json(teacher);
-//     console.log("deleted successfully");
-//   } catch (error) {
-//     res.status(404).json({ error: error.message });
-//   }
-// });
+// Delete or Multiple Delete teacher
 router.delete('/deleteMany', async (req, res) => {
   try {
     const { _id } = req.body; 

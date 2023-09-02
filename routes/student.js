@@ -23,16 +23,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Update a student
-// router.put('/:id', async (req, res) => {
-//   try {
-//     const student = await Student.findByIdAndUpdate(req.params.id, req.body, { new: true });
-//     res.json(student);
-//   } catch (error) {
-//     res.status(404).json({ error: error.message });
-//   }
-// });
-
+// Multiple Read
 router.get('/getMany', async(req, res) => {
   try {
     let body = req.body;
@@ -48,18 +39,17 @@ router.get('/getMany', async(req, res) => {
   }
 })
 
+// Update a student
+router.put('/:id', async (req, res) => {
+  try {
+    const student = await Student.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json(student);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+});
 
-// Delete a student
-// router.delete('/:id', async (req, res) => {
-//   try {
-//     const student = await Student.findByIdAndRemove(req.params.id);
-//     res.json(student);
-//     console.log("deleted successfully");
-//   } catch (error) {
-//     res.status(404).json({ error: error.message });
-//   }
-// });
-
+// Delete Users
 router.delete('/deleteMany', async (req, res) => {
   try {
     const { _id } = req.body; 
