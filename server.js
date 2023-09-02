@@ -13,7 +13,7 @@ app.use(express.json())
 
 app.get('/', async (req, res) => {
   try{
-    res.send('Hello World')
+    res.send('Please go to /api/student or /api/teacher')
   }catch(error){
     console.log(error)
   }
